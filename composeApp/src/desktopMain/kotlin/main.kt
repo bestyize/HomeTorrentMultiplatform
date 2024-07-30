@@ -15,10 +15,10 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
-import app.App
-import framework.theme.AppTheme
-import framework.theme.LocalColors
-import widget.TopAppBar
+import com.home.torrent.app.App
+import com.thewind.desktop.widget.TopAppBar
+import com.thewind.widget.theme.AppTheme
+import com.thewind.widget.theme.LocalColors
 
 fun main() = application {
     val windowSize = remember { DpSize(380.dp, 800.dp) }

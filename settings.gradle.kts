@@ -30,3 +30,5 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
+include(":framework:widget")
+include(":framework:network")

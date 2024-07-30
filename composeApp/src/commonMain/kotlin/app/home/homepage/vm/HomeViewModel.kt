@@ -1,7 +1,7 @@
 package app.home.homepage.vm
 
 import androidx.lifecycle.ViewModel
-import app.home.homepage.model.HomePageState
+import com.home.torrent.main.page.main.model.HomePageState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 

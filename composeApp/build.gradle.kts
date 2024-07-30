@@ -49,6 +49,9 @@ kotlin {
             implementation(libs.ktorCio)
             implementation(libs.viewmodel)
             implementation(libs.kotlinSerialization)
+            implementation(libs.composeNavigation)
+            implementation(project(":framework:widget"))
+            implementation(project(":framework:network"))
 
         }
         desktopMain.dependencies {
