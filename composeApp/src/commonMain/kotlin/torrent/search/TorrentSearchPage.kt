@@ -6,10 +6,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.thewind.widget.theme.LocalColors
 
 @Composable
 fun TorrentSearchPage(index: Int) {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text("Search Torrents - $index")
+        Text("Search Torrents - $index", color = LocalColors.current.Text1)
     }
 }

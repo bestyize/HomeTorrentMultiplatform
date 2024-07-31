@@ -9,4 +9,5 @@ class HomeViewModel : ViewModel() {
     private val _state: MutableStateFlow<HomePageState> = MutableStateFlow(HomePageState())
 
     val state = _state.asStateFlow()
+
 }

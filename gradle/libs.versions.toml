@@ -15,32 +15,24 @@ junit = "4.13.2"
 kotlin = "2.0.0"
 ktorVersion = "3.0.0-beta-1"
 viewmodelVersion = "2.8.0"
-material3Version = "1.3.0-beta05"
-gsonVersion = "2.11.0"
 kotlinSerializationVersion = "1.7.1"
 uiToolingPreviewAndroid = "1.6.8"
-navVersion = "2.7.0-alpha07"
+skikoVersion = "0.8.9"
+voyagerVersion = "1.1.0-beta02"
 
 
 [libraries]
-kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
-androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-junit" }
-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-espresso-core" }
-androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
-androidx-material = { group = "com.google.android.material", name = "material", version.ref = "androidx-material" }
-androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 ktor = {module = "io.ktor:ktor-client-core", version.ref="ktorVersion"}
 ktorCio = {module = "io.ktor:ktor-client-cio", version.ref="ktorVersion"}
 viewmodel = {module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref="viewmodelVersion"}
-material3 = {module = "androidx.compose.material3:material3", version.ref ="material3Version"}
-gson = {module = "com.google.code.gson:gson", version.ref="gsonVersion"}
 kotlinSerialization = {module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref="kotlinSerializationVersion"}
 androidx-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "ui-tooling-preview-android", version.ref = "uiToolingPreviewAndroid" }
-composeNavigation = {module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navVersion"}
+
+voyagerNavigator = {module = "cafe.adriel.voyager:voyager-navigator", version.ref="voyagerVersion"}
+voyagerScreenModel = {module = "cafe.adriel.voyager:voyager-screenmodel", version.ref="voyagerVersion"}
+voyagerTransitions = {module = "cafe.adriel.voyager:voyager-transitions", version.ref="voyagerVersion"}
+voyagerLifecycleKmp = {module = "cafe.adriel.voyager:voyager-lifecycle-kmp", version.ref="voyagerVersion"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

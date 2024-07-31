@@ -12,28 +12,31 @@ plugins {
 
 kotlin {
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        compilerOptions {
+        @OptIn(ExperimentalKotlinGradlePluginApi::class) compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     jvm("desktop")
-    
+
     listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
+        iosX64(), iosArm64(), iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
         }
     }
-    
+
     sourceSets {
-        val desktopMain by getting
-        
+        val desktopMain by getting {
+            dependencies {
+                val skikoAwt =
+                    "org.jetbrains.skiko:skiko-awt-runtime-${currentOs()}-${currentArch()}:${libs.versions.skikoVersion.get()}"
+                implementation(skikoAwt)
+            }
+        }
+
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -49,9 +52,13 @@ kotlin {
             implementation(libs.ktorCio)
             implementation(libs.viewmodel)
             implementation(libs.kotlinSerialization)
-            implementation(libs.composeNavigation)
             implementation(project(":framework:widget"))
             implementation(project(":framework:network"))
+
+            implementation(libs.voyagerNavigator)
+            implementation(libs.voyagerScreenModel)
+            implementation(libs.voyagerLifecycleKmp)
+            implementation(libs.voyagerTransitions)
 
         }
         desktopMain.dependencies {
@@ -106,5 +113,27 @@ compose.desktop {
             packageName = "xyz.thewind.torrent"
             packageVersion = "1.0.0"
         }
+    }
+}
+
+
+private fun currentArch(): String {
+    val arch = System.getProperty("os.arch").lowercase()
+    return when {
+        arch.startsWith("x86_64") || arch.startsWith("amd64") -> "x64"
+        arch.startsWith("aarch64") -> "arm64"
+        else -> throw Exception("unsupported arch: $arch")
+
+    }
+}
+
+
+private fun currentOs(): String {
+    val os = System.getProperty("os.name").lowercase()
+    return when {
+        os.startsWith("windows") -> "windows"
+        os.startsWith("mac") -> "macos"
+        os.startsWith("linux") -> "linux"
+        else -> throw Exception("unsupported os: $os")
     }
 }

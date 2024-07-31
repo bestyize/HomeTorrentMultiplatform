@@ -19,6 +19,7 @@ import com.home.torrent.app.App
 import com.thewind.desktop.widget.TopAppBar
 import com.thewind.widget.theme.AppTheme
 import com.thewind.widget.theme.LocalColors
+import kotlin.system.exitProcess
 
 fun main() = application {
     val windowSize = remember { DpSize(380.dp, 800.dp) }
@@ -38,7 +39,7 @@ fun main() = application {
             ) {
                 WindowDraggableArea(modifier = Modifier.fillMaxWidth().wrapContentHeight()) {
                     TopAppBar(title = "磁力之家", onMin = {}, backgroundColor = LocalColors.current.Ga4, onClose = {
-                        exitApplication()
+                        exitProcess(0)
                     })
                 }
                 App()
