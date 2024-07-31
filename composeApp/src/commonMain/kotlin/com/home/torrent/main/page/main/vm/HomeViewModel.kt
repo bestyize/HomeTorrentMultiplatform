@@ -1,4 +1,4 @@
-package app.home.homepage.vm
+package com.home.torrent.main.page.main.vm
 
 import androidx.lifecycle.ViewModel
 import com.home.torrent.main.page.main.model.HomePageState

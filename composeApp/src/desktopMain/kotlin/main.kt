@@ -11,14 +11,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Window
-import androidx.compose.ui.window.WindowPosition
-import androidx.compose.ui.window.application
-import androidx.compose.ui.window.rememberWindowState
+import androidx.compose.ui.window.*
 import com.home.torrent.app.App
 import com.thewind.desktop.widget.TopAppBar
 import com.thewind.widget.theme.AppTheme
 import com.thewind.widget.theme.LocalColors
+import hometorrentmultiplatform.composeapp.generated.resources.Res
+import hometorrentmultiplatform.composeapp.generated.resources.logo
+import org.jetbrains.compose.resources.painterResource
 import kotlin.system.exitProcess
 
 fun main() = application {
@@ -30,7 +30,8 @@ fun main() = application {
         transparent = true,
         undecorated = true,
         alwaysOnTop = true,
-        state = windowState
+        state = windowState,
+        icon = painterResource(Res.drawable.logo)
     ) {
         AppTheme {
             Column(
@@ -46,4 +47,10 @@ fun main() = application {
             }
         }
     }
+
+    Tray(icon = painterResource(Res.drawable.logo), tooltip = "右键打开", menu = {
+        Item(text = "Exit", onClick = {
+            exitProcess(0)
+        })
+    })
 }

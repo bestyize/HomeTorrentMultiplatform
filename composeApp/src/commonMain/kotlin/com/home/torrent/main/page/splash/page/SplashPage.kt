@@ -23,7 +23,7 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import com.thewind.widget.theme.LocalColors
 import com.thewind.widget.ui.TitleHeader
 import hometorrentmultiplatform.composeapp.generated.resources.Res
-import hometorrentmultiplatform.composeapp.generated.resources.compose_multiplatform
+import hometorrentmultiplatform.composeapp.generated.resources.logo
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
@@ -77,7 +77,7 @@ private fun SplashPage() {
             modifier = Modifier.wrapContentSize().align(Alignment.Center),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(painter = painterResource(Res.drawable.compose_multiplatform),
+            Image(painter = painterResource(Res.drawable.logo),
                 contentDescription = "",
                 modifier = Modifier.size(state.logoSize.dp).graphicsLayer {
                     cameraDistance = 10000f
