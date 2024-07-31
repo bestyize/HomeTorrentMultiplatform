@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
 import com.home.torrent.app.App
-import com.thewind.desktop.widget.TopAppBar
+import com.thewind.widget.ui.top.TopAppBar
 import com.thewind.widget.theme.AppTheme
 import com.thewind.widget.theme.LocalColors
 import hometorrentmultiplatform.composeapp.generated.resources.Res

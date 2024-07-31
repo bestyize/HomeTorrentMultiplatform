@@ -19,25 +19,30 @@ kotlinSerializationVersion = "1.7.1"
 uiToolingPreviewAndroid = "1.6.8"
 skikoVersion = "0.8.9"
 voyagerVersion = "1.1.0-beta02"
+datastoreVersion = "1.1.1"
 
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
-ktor = {module = "io.ktor:ktor-client-core", version.ref="ktorVersion"}
-ktorCio = {module = "io.ktor:ktor-client-cio", version.ref="ktorVersion"}
-viewmodel = {module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref="viewmodelVersion"}
-kotlinSerialization = {module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref="kotlinSerializationVersion"}
+ktor = { module = "io.ktor:ktor-client-core", version.ref = "ktorVersion" }
+ktorCio = { module = "io.ktor:ktor-client-cio", version.ref = "ktorVersion" }
+viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "viewmodelVersion" }
+kotlinSerialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerializationVersion" }
 androidx-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "ui-tooling-preview-android", version.ref = "uiToolingPreviewAndroid" }
 
-voyagerNavigator = {module = "cafe.adriel.voyager:voyager-navigator", version.ref="voyagerVersion"}
-voyagerScreenModel = {module = "cafe.adriel.voyager:voyager-screenmodel", version.ref="voyagerVersion"}
-voyagerTransitions = {module = "cafe.adriel.voyager:voyager-transitions", version.ref="voyagerVersion"}
-voyagerLifecycleKmp = {module = "cafe.adriel.voyager:voyager-lifecycle-kmp", version.ref="voyagerVersion"}
+voyagerNavigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyagerVersion" }
+voyagerScreenModel = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyagerVersion" }
+voyagerTransitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyagerVersion" }
+voyagerLifecycleKmp = { module = "cafe.adriel.voyager:voyager-lifecycle-kmp", version.ref = "voyagerVersion" }
+
+datastore = { module = "androidx.datastore:datastore-core-okio", version.ref = "datastoreVersion" }
+datastorePerference = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastoreVersion" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotlinSerialization = {id = "plugin.serialization", version.ref = "kotlin"}
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

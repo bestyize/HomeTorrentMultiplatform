@@ -32,3 +32,5 @@ dependencyResolutionManagement {
 include(":composeApp")
 include(":framework:widget")
 include(":framework:network")
+include(":framework:perference")
+include(":framework:baseapp")

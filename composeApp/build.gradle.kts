@@ -7,7 +7,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
-    kotlin("plugin.serialization") version "2.0.0"
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -40,6 +40,7 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(project(":framework:baseapp"))
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -54,11 +55,15 @@ kotlin {
             implementation(libs.kotlinSerialization)
             implementation(project(":framework:widget"))
             implementation(project(":framework:network"))
+            implementation(project(":framework:perference"))
 
             implementation(libs.voyagerNavigator)
             implementation(libs.voyagerScreenModel)
             implementation(libs.voyagerLifecycleKmp)
             implementation(libs.voyagerTransitions)
+
+            implementation(libs.datastore)
+            implementation(libs.datastorePerference)
 
         }
         desktopMain.dependencies {

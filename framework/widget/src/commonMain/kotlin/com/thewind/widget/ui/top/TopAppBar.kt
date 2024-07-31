@@ -1,4 +1,4 @@
-package com.thewind.desktop.widget
+package com.thewind.widget.ui.top
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
