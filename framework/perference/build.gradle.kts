@@ -10,7 +10,6 @@ plugins {
 }
 
 kotlin {
-
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class) compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
@@ -22,7 +21,7 @@ kotlin {
         iosX64(), iosArm64(), iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "widget"
+            baseName = "perference"
             isStatic = true
         }
     }
