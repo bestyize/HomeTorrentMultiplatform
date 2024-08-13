@@ -1,3 +1,4 @@
+import com.android.build.gradle.internal.ide.kmp.KotlinAndroidSourceSetMarker.Companion.android
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -51,7 +52,6 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.ktor)
             implementation(libs.ktorCio)
-            implementation(libs.viewmodel)
             implementation(libs.kotlinSerialization)
             implementation(project(":framework:widget"))
             implementation(project(":framework:network"))
@@ -64,10 +64,14 @@ kotlin {
 
             implementation(libs.datastore)
             implementation(libs.datastorePerference)
+            implementation(libs.viewmodel)
+            implementation(libs.lifecycleCommon)
 
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
+            implementation(libs.androidXCollection)
+            implementation(libs.lifecycleDesktop)
         }
     }
 }

@@ -12,6 +12,7 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+        maven("https://plugins.gradle.org/m2/")
     }
 }
 
@@ -26,6 +27,7 @@ dependencyResolutionManagement {
         }
         mavenCentral()
         mavenLocal()
+        maven("https://plugins.gradle.org/m2/")
     }
 }
 

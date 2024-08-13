@@ -17,10 +17,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.home.torrent.main.page.main.vm.HomeViewModel
 import cafe.adriel.voyager.core.annotation.ExperimentalVoyagerApi
+import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.jetpack.navigatorViewModel
+import com.home.torrent.main.page.main.vm.HomeViewModel
 import com.thewind.widget.theme.LocalColors
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -33,14 +33,13 @@ class MainScreen : Screen {
     override fun Content() {
         MainPage()
     }
-
 }
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalVoyagerApi::class)
 @Composable
 @Preview
-private fun MainPage() {
-    val vm = navigatorViewModel { HomeViewModel() }
+private fun MainScreen.MainPage() {
+    val vm = rememberScreenModel { HomeViewModel() }
     val state by vm.state.collectAsState()
 
     val pagerState = rememberPagerState {
