@@ -20,9 +20,17 @@ voyagerVersion = "1.1.0-beta02"
 datastoreVersion = "1.1.1"
 collectionVersion = "1.4.3"
 lifecycleVersion = "2.8.0"
+kotlinDateTime = "0.6.0"
+androidx-room = "2.7.0-alpha06"
+ksp = "2.0.10-1.0.24"
+sqlite = "2.5.0-alpha06"
+coroutineVersion = "1.8.1"
 
 
 [libraries]
+
+coroutineSwing = {module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref="coroutineVersion"}
+
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 ktor = { module = "io.ktor:ktor-client-core", version.ref = "ktorVersion" }
 ktorCio = { module = "io.ktor:ktor-client-cio", version.ref = "ktorVersion" }
@@ -40,6 +48,21 @@ voyagerLifecycleKmp = { module = "cafe.adriel.voyager:voyager-lifecycle-kmp", ve
 
 datastore = { module = "androidx.datastore:datastore-core-okio", version.ref = "datastoreVersion" }
 datastorePerference = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastoreVersion" }
+kotlinDateTime = {module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref="kotlinDateTime"}
+
+roomCompiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
+roomRuntime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
+roomPaging = { group = "androidx.room", name = "room-paging", version.ref = "androidx-room" }
+roomCommon = { group = "androidx.room", name = "room-common", version.ref = "androidx-room" }
+
+
+roomCompilerIos64 = { group = "androidx.room", name = "room-compiler-iosarm64", version.ref = "androidx-room" }
+roomRuntimeIos64 = { group = "androidx.room", name = "room-runtime-iosarm64", version.ref = "androidx-room" }
+roomPagingIos64 = { group = "androidx.room", name = "room-paging-iosarm64", version.ref = "androidx-room" }
+roomCommonIos64 = { group = "androidx.room", name = "room-common-iosarm64", version.ref = "androidx-room" }
+
+sqliteBundle = {module = "androidx.sqlite:sqlite-bundled", version.ref="sqlite"}
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -49,3 +72,6 @@ jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+room = { id = "androidx.room", version.ref = "androidx-room" }

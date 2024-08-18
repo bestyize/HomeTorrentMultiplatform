@@ -6,10 +6,11 @@ import androidx.datastore.preferences.core.Preferences
 import okio.Path.Companion.toPath
 import java.io.File
 
+internal val USER_DIR by lazy { System.getProperty("user.home") + File.separator + "com.thewind.torrent" }
 
 private val dataStore by lazy {
     PreferenceDataStoreFactory.createWithPath(produceFile = {
-        (System.getProperty("user.home") + File.separator + "com.thewind.torrent" + File.separator + "config.preferences_pb").toPath()
+        (USER_DIR + File.separator + "config.preferences_pb").toPath()
     })
 }
 

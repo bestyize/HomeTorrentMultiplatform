@@ -56,6 +56,7 @@ kotlin {
             implementation(project(":framework:network"))
             implementation(project(":framework:perference"))
             implementation(project(":framework:kmmplayer"))
+            implementation(project(":business:torrent"))
 
             implementation(libs.voyagerNavigator)
             implementation(libs.voyagerScreenModel)
@@ -72,6 +73,7 @@ kotlin {
             implementation(compose.desktop.currentOs)
             implementation(libs.androidXCollection)
             implementation(libs.lifecycleDesktop)
+            implementation(libs.coroutineSwing)
         }
     }
 }
@@ -122,6 +124,13 @@ compose.desktop {
             packageName = "xyz.thewind.torrent"
             packageVersion = "1.0.0"
         }
+    }
+}
+
+configurations {
+    create("cleanedAnnotations")
+    implementation {
+        exclude(group = "org.jetbrains", module = "annotations")
     }
 }
 

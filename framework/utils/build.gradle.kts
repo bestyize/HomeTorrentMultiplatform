@@ -21,16 +21,12 @@ kotlin {
         iosX64(), iosArm64(), iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "perference"
+            baseName = "resources"
             isStatic = true
         }
     }
 
     sourceSets {
-
-        androidMain.dependencies {
-            implementation(project(":framework:baseapp"))
-        }
 
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -38,15 +34,16 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.ui)
             implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
-            implementation(libs.datastore)
-            implementation(libs.datastorePerference)
+            implementation(libs.kotlinSerialization)
+            implementation(libs.ktor)
+            implementation(libs.ktorCio)
+            implementation(libs.kotlinDateTime)
         }
     }
 }
 
 android {
-    namespace = "xyz.thewind.perference"
+    namespace = "xyz.thewind.utils"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -71,5 +68,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+}
+
+
+compose.resources {
+    publicResClass = true
+    packageOfResClass = "com.thewind.utils"
+    generateResClass = always
 }
 

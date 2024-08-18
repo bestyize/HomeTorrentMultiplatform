@@ -36,7 +36,6 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(project(":framework:perference"))
-
             implementation(libs.datastore)
             implementation(libs.datastorePerference)
         }
