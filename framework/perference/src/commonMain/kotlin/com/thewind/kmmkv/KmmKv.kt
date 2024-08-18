@@ -52,6 +52,14 @@ class KmmKv {
         }
     }
 
+    fun remove(key: String) {
+        kmmKvScope.launch {
+            getDefaultDatastore().edit {
+                it.remove(stringPreferencesKey(key))
+            }
+        }
+    }
+
     companion object {
         private val mmkv by lazy { KmmKv() }
         fun defaultKmmKv() = mmkv

@@ -18,6 +18,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
+import com.home.torrent.cloud.page.TorrentCloudPage
+import com.home.torrent.collect.page.TorrentCollectPage
 import com.home.torrent.main.page.main.vm.HomeViewModel
 import com.home.torrent.search.page.TorrentSearchPage
 import com.thewind.widget.theme.LocalColors
@@ -51,7 +53,11 @@ private fun MainScreen.MainPage() {
             Box(
                 modifier = Modifier.padding(bottom = 60.dp).fillMaxSize()
             ) {
-                TorrentSearchPage()
+                when(page) {
+                    0 -> TorrentSearchPage()
+                    1 -> TorrentCollectPage()
+                    2 -> TorrentCloudPage()
+                }
             }
         }
 
