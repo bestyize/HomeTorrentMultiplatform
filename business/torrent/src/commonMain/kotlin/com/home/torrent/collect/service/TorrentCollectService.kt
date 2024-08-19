@@ -7,12 +7,13 @@ import com.home.torrent.collect.model.TorrentUnCollectResponse
 import com.home.torrent.model.TorrentInfo
 import com.thewind.network.HttpUtil
 import com.thewind.network.appHost
-import com.thewind.utils.toJson
 import com.thewind.utils.toObject
 import com.thewind.utils.urlEncode
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 /**
  * @author: read
@@ -22,7 +23,7 @@ import kotlinx.coroutines.withContext
 internal object TorrentCollectService {
     internal suspend fun collectToCloud(data: TorrentInfo) = withContext(Dispatchers.IO) {
         runCatching {
-            HttpUtil.get("$appHost/torrent/api/collect?data=${data.toJson().urlEncode}")
+            HttpUtil.get("$appHost/torrent/api/collect?data=${Json.encodeToString(data).urlEncode}")
                 .toObject(TorrentCollectResponse::class)?.let {
                     return@withContext it
                 }
@@ -34,8 +35,8 @@ internal object TorrentCollectService {
 
     internal suspend fun unCollectFromCloud(hash: String) = withContext(Dispatchers.IO) {
         runCatching {
-            HttpUtil.get("$appHost/torrent/api/collect/delete?hash=$hash")
-                .toObject(TorrentUnCollectResponse::class)?.let {
+            HttpUtil.get("$appHost/torrent/api/collect/delete?hash=$hash").toObject(TorrentUnCollectResponse::class)
+                ?.let {
                     return@withContext it
                 }
         }
@@ -54,14 +55,13 @@ internal object TorrentCollectService {
     }
 
     internal suspend fun modifyTorrentName(
-        hash: String,
-        newName: String
+        hash: String, newName: String
     ): TorrentModifyNameResponse = withContext(Dispatchers.IO) {
         runCatching {
             HttpUtil.get("$appHost/torrent/api/edit/modifytitle?hash=$hash&newName=$newName")
                 .toObject(TorrentModifyNameResponse::class)?.let {
-                return@withContext it
-            }
+                    return@withContext it
+                }
         }
         return@withContext TorrentModifyNameResponse(code = -1, "网络错误，改名失败")
     }

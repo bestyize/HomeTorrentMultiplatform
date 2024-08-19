@@ -1,28 +1,32 @@
 package com.thewind.network
 
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.cio.CIO
-import io.ktor.client.request.get
-import io.ktor.client.request.header
-import io.ktor.client.statement.HttpResponse
-import io.ktor.client.statement.bodyAsText
+import io.ktor.client.*
+import io.ktor.client.engine.cio.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
 
 object HttpUtil {
 
-    private val client by lazy { HttpClient(CIO) }
+    val commonHeader = mutableMapOf<String, String>()
+
+    private val client by lazy {
+        HttpClient(CIO)
+    }
 
     suspend fun get(link: String?, headerMap: MutableMap<String, String> = mutableMapOf()): String {
         if (link == null || !link.startsWith("http")) {
             return ""
         }
         return try {
-            val response: HttpResponse = client.get(link){
+            headerMap.putAll(commonHeader)
+            val response: HttpResponse = client.get(link) {
                 headerMap.entries.forEach {
                     header(it.key, it.value)
                 }
             }
             response.bodyAsText()
-        } catch (e:Exception){
+        } catch (e: Exception) {
+            e.printStackTrace()
             ""
         }
     }
@@ -35,15 +39,23 @@ object HttpUtil {
      * @param headerMap 请求头
      * @return 请求结果
      */
-    fun post(
+    suspend fun post(
         link: String?, params: String?, headerMap: MutableMap<String, String> = mutableMapOf()
     ): String? {
         if (link == null || !link.startsWith("http")) {
             return ""
         }
-        var response: String? = null
-
-        return response
+        return try {
+            val response: HttpResponse = client.post(link) {
+                headerMap.entries.forEach {
+                    header(it.key, it.value)
+                }
+                setBody(params)
+            }
+            response.bodyAsText()
+        } catch (e: Exception) {
+            null
+        }
     }
 
 

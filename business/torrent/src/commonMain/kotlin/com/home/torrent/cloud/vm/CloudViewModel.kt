@@ -1,6 +1,7 @@
 package com.home.torrent.cloud.vm
 
 import androidx.lifecycle.ViewModel
+import cafe.adriel.voyager.core.model.ScreenModel
 import com.home.torrent.cloud.model.TorrentCloudPageData
 import com.home.torrent.collect.model.TorrentInfoBean
 import com.home.torrent.collect.service.TorrentCollectService
@@ -15,7 +16,7 @@ import kotlinx.coroutines.flow.asStateFlow
  * @date: 2023/8/21 上午1:00
  * @description:
  */
-internal class CloudViewModel : ViewModel() {
+internal class CloudViewModel : ScreenModel {
 
     private val _cloudPageState: MutableStateFlow<TorrentCloudPageData> = MutableStateFlow(
         TorrentCloudPageData()

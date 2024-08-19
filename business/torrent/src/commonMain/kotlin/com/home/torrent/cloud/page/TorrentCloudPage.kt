@@ -33,6 +33,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import cafe.adriel.voyager.core.model.rememberScreenModel
+import cafe.adriel.voyager.core.screen.Screen
 import com.home.torrent.cloud.vm.CloudViewModel
 import com.home.torrent.collect.model.TorrentInfoBean
 import com.home.torrent.widget.CopyAddressDialog
@@ -65,13 +67,19 @@ private val clickOptions = arrayOf(
     TorrentClickOption.CANCEL
 )
 
+class TorrentCloudScreen:Screen{
+    @Composable
+    override fun Content() {
+        TorrentCloudPage()
+    }
+
+}
+
 @Composable
 @Preview
-fun TorrentCloudPage() {
+fun TorrentCloudScreen.TorrentCloudPage() {
 
-    val vm = viewModel(
-        modelClass = CloudViewModel::class
-    )
+    val vm = rememberScreenModel { CloudViewModel() }
     val cloudPageState by vm.cloudPageState.collectAsState()
 
     val scope = rememberCoroutineScope()

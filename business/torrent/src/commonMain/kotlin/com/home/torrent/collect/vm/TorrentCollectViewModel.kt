@@ -1,7 +1,7 @@
 package com.home.torrent.collect.vm
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import cafe.adriel.voyager.core.model.ScreenModel
+import cafe.adriel.voyager.core.model.screenModelScope
 import com.home.torrent.collect.database.bean.toCollectTorrentInfo
 import com.home.torrent.collect.database.bean.toTorrentInfo
 import com.home.torrent.collect.database.torrentDb
@@ -22,7 +22,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-internal class TorrentCollectViewModel : ViewModel() {
+internal class TorrentCollectViewModel : ScreenModel {
 
     private val _localCollectPageState: MutableStateFlow<TorrentLocalCollectPageUiState> = MutableStateFlow(
         TorrentLocalCollectPageUiState()
@@ -37,7 +37,7 @@ internal class TorrentCollectViewModel : ViewModel() {
     )
 
     init {
-        viewModelScope.launch {
+        screenModelScope.launch {
             loadAll()
         }
     }
@@ -97,7 +97,7 @@ internal class TorrentCollectViewModel : ViewModel() {
             dialogState.value = CollectPageDialogState()
             return
         }
-        viewModelScope.launch {
+        screenModelScope.launch {
             dialogState.value = dialogState.value.copy(
                 type = CollectPageDialogType.ADDRESS, data = data.copy(
                     magnetUrl = when {

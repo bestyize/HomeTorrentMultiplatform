@@ -11,6 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import cafe.adriel.voyager.core.model.rememberScreenModel
+import cafe.adriel.voyager.core.screen.Screen
 import com.home.torrent.collect.model.CollectPageDialogType
 import com.home.torrent.collect.vm.TorrentCollectViewModel
 import com.home.torrent.widget.CopyAddressDialog
@@ -24,11 +26,16 @@ import com.thewind.widget.ui.TitleHeader
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 
+class TorrentCollectScreen:Screen {
+    @Composable
+    override fun Content() {
+        TorrentCollectPage()
+    }
+}
+
 @Composable
-fun TorrentCollectPage() {
-    val vm = viewModel(
-        modelClass = TorrentCollectViewModel::class
-    )
+fun TorrentCollectScreen.TorrentCollectPage() {
+    val vm = rememberScreenModel { TorrentCollectViewModel() }
 
     val state by vm.localCollectPageState.collectAsState()
 
@@ -62,14 +69,11 @@ fun TorrentCollectPage() {
             })
     }
 
-    TorrentCollectPageDialog()
+    TorrentCollectPageDialog(vm)
 }
 
 @Composable
-private fun TorrentCollectPageDialog() {
-    val vm: TorrentCollectViewModel = viewModel(
-        modelClass = TorrentCollectViewModel::class
-    )
+private fun TorrentCollectPageDialog(vm: TorrentCollectViewModel) {
     val scope = rememberCoroutineScope()
     val dialogState by vm.dialogState.collectAsState()
     if (dialogState.type != CollectPageDialogType.NONE) {

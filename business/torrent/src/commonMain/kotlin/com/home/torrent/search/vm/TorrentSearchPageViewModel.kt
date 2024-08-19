@@ -1,6 +1,6 @@
 package com.home.torrent.search.vm
 
-import androidx.lifecycle.ViewModel
+import cafe.adriel.voyager.core.model.ScreenModel
 import com.home.torrent.collect.service.TorrentCollectService
 import com.home.torrent.model.TorrentInfo
 import com.home.torrent.model.TorrentSource
@@ -8,7 +8,12 @@ import com.home.torrent.search.model.SearchPageDialogState
 import com.home.torrent.search.model.SearchPageDialogType
 import com.home.torrent.search.model.TorrentSearchPageState
 import com.home.torrent.search.model.TorrentSearchTabState
-import com.home.torrentcenter.services.*
+import com.home.torrentcenter.services.requestTorrentSources
+import com.home.torrentcenter.services.suspendSearchMagnetUrl
+import com.home.torrentcenter.services.suspendSearchTorrent
+import com.home.torrentcenter.services.suspendSearchTorrentUrl
+import com.home.torrentcenter.services.transferMagnetUrlToHash
+import com.home.torrentcenter.services.transferMagnetUrlToTorrentUrl
 import com.thewind.kmmkv.KmmKv
 import com.thewind.widget.ui.list.lazy.PageLoadState
 import com.thewind.widget.ui.toast.toast
@@ -22,7 +27,7 @@ import kotlinx.serialization.json.Json
  * @date: 2023/9/12 上午1:42
  * @description:
  */
-internal class TorrentSearchPageViewModel : ViewModel() {
+internal class TorrentSearchPageViewModel : ScreenModel {
 
 
     private val loadingSet = mutableSetOf<Int>()
@@ -141,7 +146,8 @@ internal class TorrentSearchPageViewModel : ViewModel() {
         data: TorrentInfo? = _searchPageState.value.dialogState.data, isMagnet: Boolean = true
     ) {
         if (data == null || data.detailUrl.isNullOrBlank()) {
-            _searchPageState.value = _searchPageState.value.copy(dialogState = SearchPageDialogState())
+            _searchPageState.value =
+                _searchPageState.value.copy(dialogState = SearchPageDialogState())
             return
         }
         val dialogState = _searchPageState.value.dialogState
@@ -173,7 +179,8 @@ internal class TorrentSearchPageViewModel : ViewModel() {
             toast("收藏到云端失败！")
             return
         }
-        val hash = if (torrent.hash.isNullOrBlank()) transferMagnetUrlToHash(magnetUrl) else torrent.hash
+        val hash =
+            if (torrent.hash.isNullOrBlank()) transferMagnetUrlToHash(magnetUrl) else torrent.hash
         val dat = torrent.copy(
             magnetUrl = magnetUrl,
             hash = if (hash.isBlank()) magnetUrl else hash,

@@ -18,6 +18,14 @@ fun Any?.toJson(): String {
     return Json.encodeToString(this)
 }
 
+inline fun <reified T : Any> String?.toJson(): String? {
+    this ?: return null
+    runCatching {
+        return Json.decodeFromString(this) ?: return null
+    }
+    return null
+}
+
 inline fun <reified T : Any> String?.toObject(clazz: KClass<T>): T? {
     this ?: return null
     runCatching {

@@ -1,25 +1,10 @@
 package com.home.user.mine
 
+//import coil.compose.AsyncImage
+//import coil.request.ImageRequest
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
@@ -30,24 +15,21 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
-import androidx.lifecycle.viewmodel.compose.viewModel
-//import coil.compose.AsyncImage
-//import coil.request.ImageRequest
-import com.thewind.widget.ui.setting.SettingItemView
+import cafe.adriel.voyager.core.model.rememberScreenModel
+import cafe.adriel.voyager.core.screen.Screen
 import com.home.account.model.User
-import com.home.user.login.LoginPage
+import com.home.user.login.LoginScreen
 import com.home.user.vm.UserViewModel
 import com.thewind.resources.*
 import com.thewind.utils.toDate
 import com.thewind.widget.theme.LocalColors
 import com.thewind.widget.ui.CommonAlertDialog
+import com.thewind.widget.ui.setting.SettingItemView
 import kotlinx.coroutines.launch
-import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -56,15 +38,23 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
  * @date: 2023/8/20 下午2:03
  * @description:
  */
+
+class MineScreen : Screen {
+    @Composable
+    override fun Content() {
+        MinePage()
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview
-fun MinePage() {
-    val userVm = viewModel(
-        modelClass = UserViewModel::class
-    )
+private fun Screen.MinePage() {
+    val userVm = rememberScreenModel(UserViewModel.UNIQUE_KEY) { UserViewModel.INSTANCE }
     val minePageState by userVm.minePageState.collectAsState()
     val scope = rememberCoroutineScope()
+
+    val loginScreen = remember { LoginScreen() }
 
     if (minePageState.showLogin) {
         BasicAlertDialog(
@@ -72,26 +62,16 @@ fun MinePage() {
                 scope.launch {
                     userVm.closeLogin()
                 }
-            },
-            modifier = Modifier
-                .fillMaxSize()
-                .windowInsetsPadding(WindowInsets(0.dp)),
-            properties = DialogProperties(
+            }, modifier = Modifier.fillMaxSize().windowInsetsPadding(WindowInsets(0.dp)), properties = DialogProperties(
                 usePlatformDefaultWidth = false
             )
         ) {
-            LoginPage {
-                scope.launch {
-                    userVm.closeLogin()
-                }
-            }
+            loginScreen.Content()
         }
     }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(LocalColors.current.Bg2),
+        modifier = Modifier.fillMaxSize().background(LocalColors.current.Bg2),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.statusBarsPadding())
@@ -159,11 +139,8 @@ fun MinePage() {
 @Preview
 fun HeaderCard(user: User? = null, onLoginClick: () -> Unit = {}) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .background(LocalColors.current.Bg1, RoundedCornerShape(5.dp))
-            .padding(5.dp),
+        modifier = Modifier.fillMaxWidth().wrapContentHeight()
+            .background(LocalColors.current.Bg1, RoundedCornerShape(5.dp)).padding(5.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
 //        AsyncImage(
@@ -178,17 +155,12 @@ fun HeaderCard(user: User? = null, onLoginClick: () -> Unit = {}) {
 //            contentDescription = null
 //        )
         Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
+            modifier = Modifier.fillMaxWidth().wrapContentHeight()
         ) {
             Column(
-                modifier = Modifier
-                    .wrapContentWidth()
-                    .align(Alignment.CenterStart)
+                modifier = Modifier.wrapContentWidth().align(Alignment.CenterStart)
             ) {
-                Text(text = user?.userName.takeIf { it?.isNotBlank() == true }
-                    ?: stringResource(Res.string.not_login),
+                Text(text = user?.userName.takeIf { it?.isNotBlank() == true } ?: stringResource(Res.string.not_login),
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
                     color = LocalColors.current.Text1)
@@ -204,9 +176,7 @@ fun HeaderCard(user: User? = null, onLoginClick: () -> Unit = {}) {
 
                     user?.registerTime.toDate().takeIf { it.isNotBlank() }?.let {
                         Spacer(
-                            modifier = Modifier
-                                .height(5.dp)
-                                .width(10.dp)
+                            modifier = Modifier.height(5.dp).width(10.dp)
                         )
                         Text(
                             text = stringResource(
@@ -222,12 +192,8 @@ fun HeaderCard(user: User? = null, onLoginClick: () -> Unit = {}) {
             if (user == null) {
                 Text(text = stringResource(Res.string.login_or_register),
                     color = LocalColors.current.Text1,
-                    modifier = Modifier
-                        .padding(end = 10.dp)
-                        .wrapContentWidth()
-                        .wrapContentHeight()
-                        .align(Alignment.CenterEnd)
-                        .clickable {
+                    modifier = Modifier.padding(end = 10.dp).wrapContentWidth().wrapContentHeight()
+                        .align(Alignment.CenterEnd).clickable {
                             onLoginClick.invoke()
                         })
             }

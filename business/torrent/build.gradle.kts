@@ -51,9 +51,6 @@ kotlin {
             implementation(libs.lifecycleCommon)
 
             implementation(libs.roomRuntime)
-            implementation(libs.roomCompiler)
-            implementation(libs.roomPaging)
-            implementation(libs.roomCommon)
             implementation(libs.sqliteBundle)
         }
     }

@@ -1,6 +1,5 @@
 package com.home.torrent.search.page
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -18,7 +17,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import cafe.adriel.voyager.core.model.rememberScreenModel
+import cafe.adriel.voyager.core.screen.Screen
 import com.home.torrent.collect.vm.TorrentCollectViewModel
 import com.home.torrent.search.model.SearchPageDialogType
 import com.home.torrent.search.vm.TorrentSearchPageViewModel
@@ -30,19 +30,25 @@ import com.thewind.widget.theme.LocalColors
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+
+class TorrentSearchScreen : Screen {
+    @Composable
+    override fun Content() {
+        TorrentSearchPage()
+    }
+
+}
+
 /**
  * @author: read
  * @date: 2023/9/12 上午1:18
  * @description:
  */
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun TorrentSearchPage() {
-    val vm = viewModel(modelClass = TorrentSearchPageViewModel::class)
+private fun TorrentSearchScreen.TorrentSearchPage() {
+    val vm = rememberScreenModel { TorrentSearchPageViewModel() }
 
-    val collectVm = viewModel(
-        modelClass = TorrentCollectViewModel::class
-    )
+    val collectVm = rememberScreenModel { TorrentCollectViewModel() }
 
     val collectSetState by collectVm.torrentSetState.collectAsState(setOf())
 

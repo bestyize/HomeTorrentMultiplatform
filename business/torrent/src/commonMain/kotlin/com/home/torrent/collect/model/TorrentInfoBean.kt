@@ -2,12 +2,14 @@ package com.home.torrent.collect.model
 
 
 import com.home.torrent.model.TorrentInfo
+import kotlinx.serialization.Serializable
 
 /**
  * @author: read
  * @date: 2023/8/21 上午1:02
  * @description:
  */
+@Serializable
 internal data class TorrentInfoBean(
     var id: Long = 0,
     var uid: Long = 0,

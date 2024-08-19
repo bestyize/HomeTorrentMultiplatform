@@ -1,28 +1,11 @@
 package com.home.user.login
 
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -33,7 +16,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import cafe.adriel.voyager.core.model.rememberScreenModel
+import cafe.adriel.voyager.core.screen.Screen
 import com.home.user.model.LoginPageStage
 import com.home.user.vm.UserViewModel
 import com.thewind.resources.*
@@ -49,11 +33,20 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
  * @description:
  */
 
+
+class LoginScreen : Screen {
+    @Composable
+    override fun Content() {
+        LoginPage()
+    }
+
+}
+
 @Composable
 @Preview
-fun LoginPage(onClose: () -> Unit = {}) {
+private fun Screen.LoginPage() {
 
-    val vm = viewModel(modelClass = UserViewModel::class)
+    val vm = rememberScreenModel(UserViewModel.UNIQUE_KEY) { UserViewModel.INSTANCE }
 
     val loginPageState by vm.loginPageStage.collectAsState()
 
@@ -71,10 +64,10 @@ fun LoginPage(onClose: () -> Unit = {}) {
                 contentDescription = "Close",
                 tint = LocalColors.current.Text1,
                 modifier = Modifier.align(
-                        Alignment.CenterEnd
-                    ).padding(20.dp).clickable {
-                        onClose.invoke()
-                    })
+                    Alignment.CenterEnd
+                ).padding(20.dp).clickable {
+                    vm.closeLogin()
+                })
         }
 
         Column(
@@ -177,11 +170,11 @@ fun LoginPage(onClose: () -> Unit = {}) {
                         fontWeight = FontWeight.Bold,
                         color = LocalColors.current.Text1,
                         modifier = Modifier.padding(end = 20.dp).clickable {
-                                scope.launch {
-                                    vm.sendVerifyCode()
-                                }
+                            scope.launch {
+                                vm.sendVerifyCode()
+                            }
 
-                            })
+                        })
                 }, colors = OutlinedTextFieldDefaults.colors(
                     unfocusedBorderColor = Color.Transparent,
                     focusedBorderColor = LocalColors.current.Brand_pink,
@@ -225,21 +218,21 @@ fun LoginPage(onClose: () -> Unit = {}) {
                 ),
                     color = LocalColors.current.Text1,
                     modifier = Modifier.wrapContentWidth().align(Alignment.CenterEnd).clickable {
-                            if (loginPageState.pageStage == LoginPageStage.REGISTER) {
-                                vm.updatePageStage(LoginPageStage.LOGIN)
-                            } else {
-                                vm.updatePageStage(LoginPageStage.REGISTER)
-                            }
+                        if (loginPageState.pageStage == LoginPageStage.REGISTER) {
+                            vm.updatePageStage(LoginPageStage.LOGIN)
+                        } else {
+                            vm.updatePageStage(LoginPageStage.REGISTER)
+                        }
 
-                        })
+                    })
 
                 Text(text = stringResource(Res.string.modify_or_find_password),
                     color = LocalColors.current.Text_white,
                     modifier = Modifier.wrapContentWidth().align(Alignment.CenterStart).clickable {
-                            scope.launch {
-                                vm.updatePageStage(LoginPageStage.MODIFY_PASSWORD)
-                            }
-                        })
+                        scope.launch {
+                            vm.updatePageStage(LoginPageStage.MODIFY_PASSWORD)
+                        }
+                    })
 
             }
         }

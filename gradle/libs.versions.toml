@@ -11,7 +11,7 @@ androidx-espresso-core = "3.6.1"
 androidx-material = "1.12.0"
 androidx-test-junit = "1.2.1"
 compose-plugin = "1.7.0-alpha02"
-kotlin = "2.0.0"
+kotlin = "2.0.10"
 ktorVersion = "3.0.0-beta-1"
 kotlinSerializationVersion = "1.7.1"
 uiToolingPreviewAndroid = "1.6.8"
@@ -37,6 +37,8 @@ coroutineSwing = {module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", ver
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 ktor = { module = "io.ktor:ktor-client-core", version.ref = "ktorVersion" }
 ktorCio = { module = "io.ktor:ktor-client-cio", version.ref = "ktorVersion" }
+ktorDarwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktorVersion" }
+ktorOkHttp = {module = "io.ktor:ktor-client-okhttp", version.ref = "ktorVersion"}
 viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleVersion" }
 kotlinSerialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerializationVersion" }
 androidx-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "ui-tooling-preview-android", version.ref = "uiToolingPreviewAndroid" }
@@ -53,16 +55,16 @@ datastore = { module = "androidx.datastore:datastore-core-okio", version.ref = "
 datastorePerference = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastoreVersion" }
 kotlinDateTime = {module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref="kotlinDateTime"}
 
-roomCompiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
-roomRuntime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
-roomPaging = { group = "androidx.room", name = "room-paging", version.ref = "androidx-room" }
-roomCommon = { group = "androidx.room", name = "room-common", version.ref = "androidx-room" }
+roomCompiler = { module = "androidx.room:room-compiler", version.ref = "androidx-room" }
+roomRuntime = { module = "androidx.room:room-runtime", version.ref = "androidx-room" }
+roomPaging = { module = "androidx.room:room-paging", version.ref = "androidx-room" }
+roomCommon = { module = "androidx.room:room-common", version.ref = "androidx-room" }
 
 
-roomCompilerIos64 = { group = "androidx.room", name = "room-compiler-iosarm64", version.ref = "androidx-room" }
-roomRuntimeIos64 = { group = "androidx.room", name = "room-runtime-iosarm64", version.ref = "androidx-room" }
-roomPagingIos64 = { group = "androidx.room", name = "room-paging-iosarm64", version.ref = "androidx-room" }
-roomCommonIos64 = { group = "androidx.room", name = "room-common-iosarm64", version.ref = "androidx-room" }
+roomCompilerIos64 = { module = "androidx.room:room-compiler-iosarm64", version.ref = "androidx-room" }
+roomRuntimeIos64 = { module = "androidx.room:room-runtime-iosarm64", version.ref = "androidx-room" }
+roomPagingIos64 = { module = "androidx.room:room-paging-iosarm64", version.ref = "androidx-room" }
+roomCommonIos64 = { module = "androidx.room:room-common-iosarm64", version.ref = "androidx-room" }
 
 sqliteBundle = {module = "androidx.sqlite:sqlite-bundled", version.ref="sqlite"}
 

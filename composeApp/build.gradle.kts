@@ -57,6 +57,7 @@ kotlin {
             implementation(project(":framework:perference"))
             implementation(project(":framework:kmmplayer"))
             implementation(project(":business:torrent"))
+            implementation(project(":business:account"))
 
             implementation(libs.voyagerNavigator)
             implementation(libs.voyagerScreenModel)

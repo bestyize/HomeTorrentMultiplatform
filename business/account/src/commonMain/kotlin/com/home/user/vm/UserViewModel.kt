@@ -1,7 +1,6 @@
 package com.home.user.vm
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import cafe.adriel.voyager.core.model.ScreenModel
 import com.home.account.AccountManager
 import com.home.account.service.LoginService
 import com.home.torrent.util.*
@@ -11,14 +10,13 @@ import com.home.user.model.MinePageData
 import com.thewind.widget.ui.toast.toast
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 
 /**
  * @author: read
  * @date: 2023/8/20 上午1:34
  * @description:
  */
-class UserViewModel : ViewModel() {
+class UserViewModel : ScreenModel {
 
     private val _loginPageState: MutableStateFlow<LoginPageData> = MutableStateFlow(LoginPageData())
 
@@ -50,11 +48,11 @@ class UserViewModel : ViewModel() {
             return
         }
         LoginService.login(userName = data.userName, email = data.email, password = data.password).let {
-                toast(it.message)
-                _minePageState.value = _minePageState.value.copy(
-                    showLogin = !AccountManager.isLogin(), user = AccountManager.getUser()
-                )
-            }
+            toast(it.message)
+            _minePageState.value = _minePageState.value.copy(
+                showLogin = !AccountManager.isLogin(), user = AccountManager.getUser()
+            )
+        }
     }
 
     private suspend fun register() {
@@ -99,16 +97,13 @@ class UserViewModel : ViewModel() {
             toast(data.password.validPasswordWithReason)
             return
         }
-        viewModelScope.launch {
-            LoginService.modifyPassword(
-                verifyCode = data.verifyCode, email = data.email, newPassword = data.password
-            ).let {
-                toast(it.message)
-                _minePageState.value = _minePageState.value.copy(
-                    showLogin = !AccountManager.isLogin(), user = AccountManager.getUser()
-                )
-            }
-
+        LoginService.modifyPassword(
+            verifyCode = data.verifyCode, email = data.email, newPassword = data.password
+        ).let {
+            toast(it.message)
+            _minePageState.value = _minePageState.value.copy(
+                showLogin = !AccountManager.isLogin(), user = AccountManager.getUser()
+            )
         }
     }
 
@@ -125,12 +120,10 @@ class UserViewModel : ViewModel() {
     }
 
     fun logout() {
-        viewModelScope.launch {
-            AccountManager.loginOut()
-            _minePageState.value = _minePageState.value.copy(
-                showLogin = !AccountManager.isLogin(), user = AccountManager.getUser(), showLogout = false
-            )
-        }
+        AccountManager.loginOut()
+        _minePageState.value = _minePageState.value.copy(
+            showLogin = !AccountManager.isLogin(), user = AccountManager.getUser(), showLogout = false
+        )
     }
 
 
@@ -171,5 +164,11 @@ class UserViewModel : ViewModel() {
         _minePageState.value = _minePageState.value.copy(showLogout = true)
     }
 
+
+    companion object {
+        const val UNIQUE_KEY = "user_view_model"
+
+        val INSTANCE: UserViewModel = UserViewModel()
+    }
 
 }

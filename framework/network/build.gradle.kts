@@ -16,9 +16,22 @@ kotlin {
     }
 
     sourceSets {
+        val desktopMain by getting
+
         commonMain.dependencies {
             implementation(libs.ktor)
             implementation(libs.ktorCio)
+            implementation(project(":framework:perference"))
+            implementation(libs.datastore)
+            implementation(libs.datastorePerference)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.ktorDarwin)
+        }
+
+        desktopMain.dependencies {
+            implementation(libs.ktorOkHttp)
         }
     }
 }
