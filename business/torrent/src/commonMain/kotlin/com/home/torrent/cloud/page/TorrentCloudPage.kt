@@ -187,7 +187,6 @@ private fun CloudTorrentListView(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .statusBarsPadding()
             .background(LocalColors.current.Bg2)
     ) {
         LazyColumn(modifier = Modifier.fillMaxSize()) {

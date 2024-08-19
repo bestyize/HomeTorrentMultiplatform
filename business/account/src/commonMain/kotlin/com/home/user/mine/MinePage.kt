@@ -74,7 +74,6 @@ private fun Screen.MinePage() {
         modifier = Modifier.fillMaxSize().background(LocalColors.current.Bg2),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.statusBarsPadding())
         HeaderCard(user = minePageState.user, onLoginClick = {
             scope.launch {
                 userVm.openLogin()
