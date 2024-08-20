@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -33,7 +34,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun SettingItemView(
     title: String = "",
     titleColor: Color = LocalColors.current.Text1,
-    icon: ImageVector = Icons.Default.KeyboardArrowRight,
+    icon: ImageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
     onClick: () -> Unit = {}
 ) {
     Box(modifier = Modifier

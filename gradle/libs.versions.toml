@@ -12,7 +12,7 @@ androidx-material = "1.12.0"
 androidx-test-junit = "1.2.1"
 compose-plugin = "1.7.0-alpha02"
 kotlin = "2.0.10"
-ktorVersion = "3.0.0-beta-1"
+ktorVersion = "3.0.0-beta-2"
 kotlinSerializationVersion = "1.7.1"
 uiToolingPreviewAndroid = "1.6.8"
 skikoVersion = "0.8.9"
@@ -30,8 +30,12 @@ coil = "3.0.0-alpha10"
 [libraries]
 
 coilComposeAndroid = {module = "io.coil-kt.coil3:coil-compose-android", version.ref="coil"}
+coilCoreAndroid = {module = "io.coil-kt.coil3:coil-core-android", version.ref="coil"}
 coilCore = {module = "io.coil-kt.coil3:coil-core", version.ref="coil"}
+coilCoreJvm = {module = "io.coil-kt.coil3:coil-core-jvm", version.ref="coil"}
+coil = {module = "io.coil-kt.coil3:coil", version.ref="coil"}
 coilCompose = {module = "io.coil-kt.coil3:coil-compose", version.ref="coil"}
+coilKtor =  {module = "io.coil-kt.coil3:coil-network-ktor3", version.ref="coil"}
 coroutineSwing = {module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref="coroutineVersion"}
 
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }

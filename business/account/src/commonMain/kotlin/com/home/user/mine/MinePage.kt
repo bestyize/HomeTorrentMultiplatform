@@ -1,7 +1,6 @@
 package com.home.user.mine
 
-//import coil.compose.AsyncImage
-//import coil.request.ImageRequest
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -15,12 +14,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
+import coil3.compose.AsyncImage
+import coil3.compose.LocalPlatformContext
+import coil3.request.ImageRequest
 import com.home.account.model.User
 import com.home.user.login.LoginScreen
 import com.home.user.vm.UserViewModel
@@ -105,27 +109,6 @@ private fun Screen.MinePage() {
                 userVm.showLogoutWaring()
             }
         }
-//        val noticeList = remember {
-//            emptyList()
-//        }
-
-//        if (!noticeList.isNullOrEmpty()) {
-//            noticeList.filter { !it.title.isNullOrBlank() }.forEach { option ->
-//
-//                option.title?.let { title ->
-//                    Spacer(modifier = Modifier.height(20.dp))
-//                    SettingItemView(
-//                        title = title, icon = Icons.AutoMirrored.Filled.ArrowForward
-//                    ) {
-//                        option.actionUrl.takeIf { !it.isNullOrBlank() }?.let {
-//                            //activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it)))
-//                        }
-//
-//                    }
-//                }
-//
-//            }
-//        }
 
 
     }
@@ -142,17 +125,13 @@ fun HeaderCard(user: User? = null, onLoginClick: () -> Unit = {}) {
             .background(LocalColors.current.Bg1, RoundedCornerShape(5.dp)).padding(5.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-//        AsyncImage(
-//            model = ImageRequest.Builder(LocalContext.current).data(user?.icon)
-//                .error(Res.drawable.logo).build(),
-//            placeholder = painterResource(Res.drawable.logo),
-//            alignment = Alignment.Center,
-//            modifier = Modifier
-//                .padding(10.dp)
-//                .clip(RoundedCornerShape(1000.dp))
-//                .size(48.dp),
-//            contentDescription = null
-//        )
+        AsyncImage(
+            model = ImageRequest.Builder(LocalPlatformContext.current).data("https://image.uisdc.com/wp-content/uploads/2023/08/Character-avatar-20230802-1.png").build(),
+            contentDescription = "",
+            alignment = Alignment.Center,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.padding(10.dp).clip(RoundedCornerShape(1000.dp)).size(48.dp),
+        )
         Box(
             modifier = Modifier.fillMaxWidth().wrapContentHeight()
         ) {
