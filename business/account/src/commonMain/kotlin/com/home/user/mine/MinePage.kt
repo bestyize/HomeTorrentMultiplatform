@@ -22,10 +22,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
 import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
-import coil3.compose.AsyncImage
-import coil3.compose.LocalPlatformContext
-import coil3.request.ImageRequest
 import com.home.account.model.User
+import com.home.kmmimage.KmmAsyncImage
 import com.home.user.login.LoginScreen
 import com.home.user.vm.UserViewModel
 import com.thewind.resources.*
@@ -125,9 +123,8 @@ fun HeaderCard(user: User? = null, onLoginClick: () -> Unit = {}) {
             .background(LocalColors.current.Bg1, RoundedCornerShape(5.dp)).padding(5.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        AsyncImage(
-            model = ImageRequest.Builder(LocalPlatformContext.current).data("https://image.uisdc.com/wp-content/uploads/2023/08/Character-avatar-20230802-1.png").build(),
-            contentDescription = "",
+        KmmAsyncImage(
+            url = "https://image.uisdc.com/wp-content/uploads/2023/08/Character-avatar-20230802-1.png",
             alignment = Alignment.Center,
             contentScale = ContentScale.Crop,
             modifier = Modifier.padding(10.dp).clip(RoundedCornerShape(1000.dp)).size(48.dp),

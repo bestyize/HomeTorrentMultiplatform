@@ -37,6 +37,7 @@ include(":framework:network")
 include(":framework:perference")
 include(":framework:baseapp")
 include(":framework:kmmplayer")
+include(":framework:kmmimage")
 include(":framework:resources")
 include(":framework:utils")
 

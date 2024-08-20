@@ -22,7 +22,7 @@ kotlin {
         iosX64(), iosArm64(), iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "account"
+            baseName = "kmmimage"
             isStatic = true
         }
     }
@@ -40,22 +40,11 @@ kotlin {
             implementation(libs.kotlinSerialization)
             implementation(libs.ktor)
             implementation(libs.ktorCio)
-            implementation(project(":framework:widget"))
-            implementation(project(":framework:network"))
-            implementation(project(":framework:perference"))
-            implementation(project(":framework:resources"))
-            implementation(project(":framework:utils"))
-            implementation(project(":framework:kmmimage"))
 
-            implementation(libs.voyagerNavigator)
-            implementation(libs.voyagerScreenModel)
-            implementation(libs.voyagerLifecycleKmp)
-            implementation(libs.voyagerTransitions)
-
-            implementation(libs.datastore)
-            implementation(libs.datastorePerference)
-            implementation(libs.viewmodel)
-            implementation(libs.lifecycleCommon)
+            implementation(libs.coil)
+            implementation(libs.coilCore)
+            implementation(libs.coilCompose)
+            implementation(libs.coilKtor)
         }
     }
 
@@ -64,7 +53,7 @@ kotlin {
 
 
 android {
-    namespace = "xyz.thewind.account"
+    namespace = "xyz.thewind.kmmimage"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
