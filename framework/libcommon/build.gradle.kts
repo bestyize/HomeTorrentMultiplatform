@@ -1,13 +1,12 @@
-import org.gradle.internal.impldep.org.junit.experimental.categories.Categories.CategoryFilter.exclude
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -22,7 +21,7 @@ kotlin {
         iosX64(), iosArm64(), iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "account"
+            baseName = "libcommon"
             isStatic = true
         }
     }
@@ -32,37 +31,15 @@ kotlin {
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
-            implementation(compose.components.resources)
             implementation(libs.kotlinSerialization)
-            implementation(libs.ktor)
-            implementation(libs.ktorCio)
-            implementation(project(":framework:widget"))
-            implementation(project(":framework:network"))
-            implementation(project(":framework:perference"))
-            implementation(project(":framework:resources"))
-            implementation(project(":framework:utils"))
-            implementation(project(":framework:kmmimage"))
-
-            implementation(libs.voyagerNavigator)
-            implementation(libs.voyagerScreenModel)
-            implementation(libs.voyagerLifecycleKmp)
-            implementation(libs.voyagerTransitions)
-
-            implementation(libs.viewmodel)
-            implementation(libs.lifecycleCommon)
+            api(libs.kotlinDateTime)
+            api(libs.okio)
         }
     }
-
-
 }
 
-
 android {
-    namespace = "xyz.thewind.account"
+    namespace = "xyz.thewind.libcommon"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")

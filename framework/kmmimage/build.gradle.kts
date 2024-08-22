@@ -41,10 +41,9 @@ kotlin {
             implementation(libs.ktor)
             implementation(libs.ktorCio)
 
-            implementation(libs.coil)
-            implementation(libs.coilCore)
-            implementation(libs.coilCompose)
-            implementation(libs.coilKtor)
+            api(libs.coil)
+            api(libs.coilCompose)
+            api(libs.coilKtor)
         }
     }
 

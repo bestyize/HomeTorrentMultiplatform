@@ -1,6 +1,5 @@
 package com.thewind.utils
 
-import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.format.FormatStringsInDatetimeFormats
 import kotlinx.datetime.format.byUnicodePattern
@@ -14,7 +13,7 @@ import kotlinx.datetime.format.byUnicodePattern
 
 @OptIn(FormatStringsInDatetimeFormats::class)
 private val sdf by lazy {
-    LocalDateTime.Format { byUnicodePattern("yyyy-MM-dd")  }
+    LocalDateTime.Format { byUnicodePattern("yyyy-MM-dd") }
 }
 
 fun Long?.toDate(): String {

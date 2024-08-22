@@ -32,8 +32,6 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(compose.components.resources)
             implementation(libs.kotlinSerialization)
-            implementation(libs.ktor)
-            implementation(libs.ktorCio)
             implementation(project(":framework:widget"))
             implementation(project(":framework:network"))
             implementation(project(":framework:perference"))
@@ -45,8 +43,6 @@ kotlin {
             implementation(libs.voyagerLifecycleKmp)
             implementation(libs.voyagerTransitions)
 
-            implementation(libs.datastore)
-            implementation(libs.datastorePerference)
             implementation(libs.viewmodel)
             implementation(libs.lifecycleCommon)
 

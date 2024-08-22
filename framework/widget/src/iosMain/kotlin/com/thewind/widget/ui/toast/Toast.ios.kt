@@ -1,3 +1,4 @@
 package com.thewind.widget.ui.toast
 
-expect fun toast(msg:String?)
+actual fun toast(msg: String?) {
+}

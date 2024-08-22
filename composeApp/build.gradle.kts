@@ -52,10 +52,13 @@ kotlin {
             implementation(libs.ktor)
             implementation(libs.ktorCio)
             implementation(libs.kotlinSerialization)
+            implementation(project(":framework:libcommon"))
             implementation(project(":framework:widget"))
             implementation(project(":framework:network"))
             implementation(project(":framework:perference"))
             implementation(project(":framework:kmmplayer"))
+            implementation(project(":framework:kmmimage"))
+            implementation(project(":framework:utils"))
             implementation(project(":business:torrent"))
             implementation(project(":business:account"))
 
@@ -64,8 +67,6 @@ kotlin {
             implementation(libs.voyagerLifecycleKmp)
             implementation(libs.voyagerTransitions)
 
-            implementation(libs.datastore)
-            implementation(libs.datastorePerference)
             implementation(libs.viewmodel)
             implementation(libs.lifecycleCommon)
 

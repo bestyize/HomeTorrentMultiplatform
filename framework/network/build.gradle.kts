@@ -19,11 +19,9 @@ kotlin {
         val desktopMain by getting
 
         commonMain.dependencies {
-            implementation(libs.ktor)
-            implementation(libs.ktorCio)
+            api(libs.ktor)
+            api(libs.ktorCio)
             implementation(project(":framework:perference"))
-            implementation(libs.datastore)
-            implementation(libs.datastorePerference)
         }
 
         iosMain.dependencies {

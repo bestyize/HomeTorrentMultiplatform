@@ -21,11 +21,12 @@ datastoreVersion = "1.1.1"
 collectionVersion = "1.4.3"
 lifecycleVersion = "2.8.0"
 kotlinDateTime = "0.6.0"
-androidx-room = "2.7.0-alpha06"
+androidx-room = "2.7.0-alpha07"
 ksp = "2.0.10-1.0.24"
-sqlite = "2.5.0-alpha06"
+sqlite = "2.5.0-alpha07"
 coroutineVersion = "1.8.1"
 coil = "3.0.0-alpha10"
+okioVersion = "3.9.0"
 
 [libraries]
 
@@ -38,14 +39,15 @@ coilCompose = {module = "io.coil-kt.coil3:coil-compose", version.ref="coil"}
 coilKtor =  {module = "io.coil-kt.coil3:coil-network-ktor3", version.ref="coil"}
 coroutineSwing = {module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref="coroutineVersion"}
 
-androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 ktor = { module = "io.ktor:ktor-client-core", version.ref = "ktorVersion" }
 ktorCio = { module = "io.ktor:ktor-client-cio", version.ref = "ktorVersion" }
 ktorDarwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktorVersion" }
 ktorOkHttp = {module = "io.ktor:ktor-client-okhttp", version.ref = "ktorVersion"}
+
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+
 viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleVersion" }
 kotlinSerialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerializationVersion" }
-androidx-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "ui-tooling-preview-android", version.ref = "uiToolingPreviewAndroid" }
 androidXCollection = { module = "androidx.collection:collection", version.ref = "collectionVersion" }
 lifecycleCommon = { module = "org.jetbrains.androidx.lifecycle:lifecycle-common", version.ref = "lifecycleVersion" }
 lifecycleDesktop = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose-desktop", version.ref = "lifecycleVersion" }
@@ -71,6 +73,8 @@ roomPagingIos64 = { module = "androidx.room:room-paging-iosarm64", version.ref =
 roomCommonIos64 = { module = "androidx.room:room-common-iosarm64", version.ref = "androidx-room" }
 
 sqliteBundle = {module = "androidx.sqlite:sqlite-bundled", version.ref="sqlite"}
+
+okio = {module = "com.squareup.okio:okio", version.ref = "okioVersion"}
 
 
 [plugins]

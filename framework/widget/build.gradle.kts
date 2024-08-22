@@ -28,6 +28,10 @@ kotlin {
 
     sourceSets {
 
+        androidMain.dependencies {
+            implementation(project(":framework:baseapp"))
+        }
+
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -36,8 +40,6 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(project(":framework:perference"))
-            implementation(libs.datastore)
-            implementation(libs.datastorePerference)
         }
     }
 }
