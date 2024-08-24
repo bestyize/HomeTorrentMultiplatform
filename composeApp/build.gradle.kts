@@ -58,6 +58,7 @@ kotlin {
             implementation(project(":framework:perference"))
             implementation(project(":framework:kmmplayer"))
             implementation(project(":framework:kmmimage"))
+            implementation(project(":framework:resources"))
             implementation(project(":framework:utils"))
             implementation(project(":business:torrent"))
             implementation(project(":business:account"))

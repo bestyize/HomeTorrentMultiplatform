@@ -23,6 +23,7 @@ import com.home.torrent.collect.page.TorrentCollectScreen
 import com.home.torrent.main.page.main.vm.HomeViewModel
 import com.home.torrent.search.page.TorrentSearchScreen
 import com.home.user.mine.MineScreen
+import com.thewind.kmmplayer.KmmPlayer
 import com.thewind.widget.theme.LocalColors
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -68,7 +69,8 @@ private fun MainScreen.MainPage() {
             }
         }
 
-        TabRow(selectedTabIndex = pagerState.currentPage,
+        TabRow(
+            selectedTabIndex = pagerState.currentPage,
             indicator = {},
             containerColor = LocalColors.current.Bg3,
             divider = {},
@@ -76,7 +78,8 @@ private fun MainScreen.MainPage() {
         ) {
             state.tabs.forEachIndexed { index, title ->
                 val isSelected = pagerState.currentPage == index
-                Text(text = title,
+                Text(
+                    text = title,
                     textAlign = TextAlign.Center,
                     color = if (isSelected) LocalColors.current.Brand_pink else LocalColors.current.Text1,
                     fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
