@@ -27,6 +27,7 @@ import com.thewind.kmmplayer.KmmPlayer
 import com.thewind.widget.theme.LocalColors
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import xyz.thewind.shortvideo.page.ShortVideoScreen
 
 
 class MainScreen : Screen {
@@ -53,6 +54,7 @@ private fun MainScreen.MainPage() {
     val collectionScreen = remember { TorrentCollectScreen() }
     val cloudScreen = remember { TorrentCloudScreen() }
     val mineScreen = remember { MineScreen() }
+    val shortVideoScreen = remember { ShortVideoScreen() }
 
     Box(modifier = Modifier.fillMaxSize().background(LocalColors.current.Bg1).statusBarsPadding()) {
 
@@ -65,6 +67,7 @@ private fun MainScreen.MainPage() {
                     1 -> collectionScreen.Content()
                     2 -> cloudScreen.Content()
                     3 -> mineScreen.Content()
+                    4 -> shortVideoScreen.Content()
                 }
             }
         }

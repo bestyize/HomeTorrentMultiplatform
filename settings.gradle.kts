@@ -42,5 +42,6 @@ include(":framework:kmmimage")
 include(":framework:resources")
 include(":framework:utils")
 
-include(":business:torrent")
 include(":business:account")
+include(":business:shortvideo")
+include(":business:torrent")

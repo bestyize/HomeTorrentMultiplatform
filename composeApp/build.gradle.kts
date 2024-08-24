@@ -62,6 +62,7 @@ kotlin {
             implementation(project(":framework:utils"))
             implementation(project(":business:torrent"))
             implementation(project(":business:account"))
+            implementation(project(":business:shortvideo"))
 
             implementation(libs.voyagerNavigator)
             implementation(libs.voyagerScreenModel)
