@@ -22,7 +22,7 @@ collectionVersion = "1.4.3"
 lifecycleVersion = "2.8.0"
 kotlinDateTime = "0.6.0"
 androidx-room = "2.7.0-alpha07"
-ksp = "2.0.10-1.0.24"
+ksp = "2.0.20-1.0.24"
 sqlite = "2.5.0-alpha07"
 coroutineVersion = "1.8.1"
 coil = "3.0.0-alpha10"
@@ -30,6 +30,7 @@ okioVersion = "3.9.0"
 vlcjVersion = "4.8.3"
 
 javaFxVersion = "17.0.1"
+kotlinpoet = "1.16.0"
 
 [libraries]
 
@@ -81,8 +82,12 @@ sqliteBundle = {module = "androidx.sqlite:sqlite-bundled", version.ref="sqlite"}
 
 okio = {module = "com.squareup.okio:okio", version.ref = "okioVersion"}
 
+kspSpa = {module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp"}
+kotlinpoet = { group = "com.squareup" , name = "kotlinpoet-ksp" , version.ref = "kotlinpoet"}
+
 
 [plugins]
+jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

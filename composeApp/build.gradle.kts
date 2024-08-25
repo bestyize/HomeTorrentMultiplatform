@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.ksp)
 }
 
 kotlin {
@@ -59,6 +60,7 @@ kotlin {
             implementation(project(":framework:kmmplayer"))
             implementation(project(":framework:kmmimage"))
             implementation(project(":framework:resources"))
+            implementation(project(":framework:kmmdatabase"))
             implementation(project(":framework:utils"))
             implementation(project(":business:torrent"))
             implementation(project(":business:account"))

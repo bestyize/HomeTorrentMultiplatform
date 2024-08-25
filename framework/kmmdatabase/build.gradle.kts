@@ -3,12 +3,12 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.room)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -23,12 +23,19 @@ kotlin {
         iosX64(), iosArm64(), iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "torrent"
+            baseName = "kmmdatabase"
             isStatic = true
+            linkerOpts.add("-lsqlite3")
         }
     }
 
     sourceSets {
+
+        val desktopMain by getting
+
+        androidMain.dependencies {
+            implementation(project(":framework:baseapp"))
+        }
 
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -37,30 +44,18 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-            implementation(compose.components.resources)
-            implementation(libs.kotlinSerialization)
-            implementation(project(":framework:widget"))
-            implementation(project(":framework:network"))
-            implementation(project(":framework:perference"))
-            implementation(project(":framework:resources"))
-            implementation(project(":framework:utils"))
-            implementation(project(":framework:kmmdatabase"))
+            api(libs.roomRuntime)
+            api(libs.roomPaging)
+        }
 
-            implementation(libs.voyagerNavigator)
-            implementation(libs.voyagerScreenModel)
-            implementation(libs.voyagerLifecycleKmp)
-            implementation(libs.voyagerTransitions)
-
-            implementation(libs.viewmodel)
-            implementation(libs.lifecycleCommon)
+        desktopMain.dependencies {
+            api(libs.sqliteBundle)
         }
     }
-
-
 }
 
 android {
-    namespace = "xyz.thewind.torrent"
+    namespace = "xyz.thewind.kmmdatabase"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -87,15 +82,6 @@ android {
     }
 }
 
-
 room {
     schemaDirectory("$projectDir/schemas")
-}
-
-dependencies {
-    add("kspDesktop", libs.roomCompiler)
-    add("kspAndroid", libs.roomCompiler)
-    add("kspIosSimulatorArm64", libs.roomCompiler)
-    add("kspIosX64", libs.roomCompiler)
-    add("kspIosArm64", libs.roomCompiler)
 }

@@ -39,6 +39,7 @@ include(":framework:baseapp")
 include(":framework:libcommon")
 include(":framework:kmmplayer")
 include(":framework:kmmimage")
+include(":framework:kmmdatabase")
 include(":framework:resources")
 include(":framework:utils")
 
