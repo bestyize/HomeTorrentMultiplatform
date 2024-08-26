@@ -11,7 +11,7 @@ import com.home.torrent.collect.database.bean.TB_TORRENT_COLLECT
 interface CollectTorrentDao {
 
     @Query("SELECT * FROM $TB_TORRENT_COLLECT")
-    suspend fun loadCollectedTorrent(): List<CollectTorrentInfo>?
+    suspend fun loadCollectedTorrent(): List<CollectTorrentInfo>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(data: CollectTorrentInfo): Long

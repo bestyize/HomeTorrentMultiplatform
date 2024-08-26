@@ -48,8 +48,13 @@ kotlin {
             api(libs.roomPaging)
         }
 
+        iosMain.dependencies {
+            api(libs.sqliteBundle)
+        }
+
         desktopMain.dependencies {
             api(libs.sqliteBundle)
+            implementation(libs.coroutineSwing)
         }
     }
 }

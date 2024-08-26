@@ -1,21 +1,15 @@
 [versions]
-agp = "8.2.2"
+agp = "8.5.2"
 android-compileSdk = "34"
 android-minSdk = "24"
 android-targetSdk = "34"
 androidx-activityCompose = "1.9.1"
-androidx-appcompat = "1.7.0"
-androidx-constraintlayout = "2.1.4"
-androidx-core-ktx = "1.13.1"
-androidx-espresso-core = "3.6.1"
-androidx-material = "1.12.0"
-androidx-test-junit = "1.2.1"
-compose-plugin = "1.7.0-alpha02"
-kotlin = "2.0.10"
+atomicfuVersion = "0.25.0"
+compose-plugin = "1.7.0-alpha03"
+kotlin = "2.0.20"
 ktorVersion = "3.0.0-beta-2"
 kotlinSerializationVersion = "1.7.1"
-uiToolingPreviewAndroid = "1.6.8"
-skikoVersion = "0.8.9"
+skikoVersion = "0.8.11"
 voyagerVersion = "1.1.0-beta02"
 datastoreVersion = "1.1.1"
 collectionVersion = "1.4.3"
@@ -29,12 +23,14 @@ coil = "3.0.0-alpha10"
 okioVersion = "3.9.0"
 vlcjVersion = "4.8.3"
 
-javaFxVersion = "17.0.1"
+javaFxVersion = "21"
 kotlinpoet = "1.16.0"
+
 
 [libraries]
 
 
+atomicfu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "atomicfuVersion" }
 coil = {module = "io.coil-kt.coil3:coil", version.ref="coil"}
 coilCompose = {module = "io.coil-kt.coil3:coil-compose", version.ref="coil"}
 coilKtor =  {module = "io.coil-kt.coil3:coil-network-ktor3", version.ref="coil"}
@@ -98,3 +94,5 @@ kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versio
 
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 room = { id = "androidx.room", version.ref = "androidx-room" }
+
+atomicfu = {id = "org.jetbrains.kotlinx.atomicfu", version.ref = "atomicfuVersion"}
