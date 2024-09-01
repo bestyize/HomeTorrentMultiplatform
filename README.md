@@ -105,7 +105,7 @@ compose multiplatform的 viewmodel目前是实验性的支持，在macos、ios�
 
 ### 2.1.5 ScatterMapKt找不到问题
 
-桌面端compose运行库对齐有依赖，需在composeApp/build.gradle.kts的desktopMain中加入依赖，在子仓用implementation引入是无效的，当然也可在子仓用api引用
+桌面端compose运行库对齐有依赖，需在[composeApp/build.gradle.kts](composeApp/build.gradle.kts)的desktopMain中加入依赖，在子仓用implementation引入是无效的，当然也可在子仓用api引用
 
     androidx.collection:collection
 
@@ -113,6 +113,22 @@ compose multiplatform的 viewmodel目前是实验性的支持，在macos、ios�
    desktopMain.dependencies {
        implementation("androidx.collection:collection:1.4.3")
    }
+```
+
+### 2.1.6 桌面端编译或运行时找不到Skiko相关类的问题
+
+需要在[composeApp/build.gradle.kts](composeApp/build.gradle.kts)中desktopMain中加入skiko-awt-runtime依赖
+
+
+
+```kotlin
+        val desktopMain by getting {
+            dependencies {
+                val skikoAwt =
+                    "org.jetbrains.skiko:skiko-awt-runtime-${currentOs()}-${currentArch()}:${libs.versions.skikoVersion.get()}"
+                implementation(skikoAwt)
+            }
+        }
 ```
 
 解决方法：
