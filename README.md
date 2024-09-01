@@ -68,9 +68,9 @@
 
 ## 2.1 依赖问题
 
-### 2.1.1 MacOS下的编译依赖问题
+### 2.1.1 Desktop产物的编译依赖问题
 
-问题1：在Mac上编译时，使用implementation管理依赖，若不在composeApp目录下的build.gradle.kts中引用依赖，则会编译时或运行时找不到类。
+问题1：编译目标产物为桌面版时，使用implementation管理依赖，若不在composeApp目录下的build.gradle.kts中引用依赖，则会编译时或运行时找不到类。
 
 解决方式：
 
@@ -79,7 +79,7 @@
 
 问题2: 依赖传递问题。
 
-假设有三个模块 A/B/C，C依赖B,B依赖A，A和C都是支持跨android\ios\desktop的组件，但B不是，那C无法支持A中支持的能力，且在MacOS上无法编译通过，或编译后找不到类
+假设有三个模块 A/B/C，C依赖B,B依赖A，A和C都是支持跨android\ios\desktop的组件，但B不是，那C无法支持A中支持的能力，且在编译目标产物为桌面版时无法编译通过，或编译后找不到类
 
 解决方式:
 
@@ -103,6 +103,17 @@ compose multiplatform的 viewmodel目前是实验性的支持，在macos、ios�
 
 [https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-viewmodel.html](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-viewmodel.html)
 
+### 2.1.5 ScatterMapKt找不到问题
+
+桌面端compose运行库对齐有依赖，需在composeApp/build.gradle.kts的desktopMain中加入依赖，在子仓用implementation引入是无效的，当然也可在子仓用api引用
+
+    androidx.collection:collection
+
+```kotlin
+   desktopMain.dependencies {
+       implementation("androidx.collection:collection:1.4.3")
+   }
+```
 
 解决方法：
 
