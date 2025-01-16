@@ -10,7 +10,6 @@ import androidx.compose.ui.graphics.drawscope.DrawScope.Companion.DefaultFilterQ
 import androidx.compose.ui.layout.ContentScale
 import coil3.compose.AsyncImage
 import coil3.compose.AsyncImagePainter.Companion.DefaultTransform
-import coil3.compose.DefaultModelEqualityDelegate
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 
@@ -38,6 +37,5 @@ fun KmmAsyncImage(
         colorFilter = colorFilter,
         filterQuality = filterQuality,
         clipToBounds = clipToBounds,
-        modelEqualityDelegate = DefaultModelEqualityDelegate
     )
 }

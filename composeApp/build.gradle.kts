@@ -132,6 +132,11 @@ compose.desktop {
             packageName = "xyz.thewind.torrent"
             packageVersion = "1.0.0"
         }
+        buildTypes.release.proguard {
+            version.set("7.6.0")
+            configurationFiles.from("proguard.pro")
+        }
+
     }
 }
 

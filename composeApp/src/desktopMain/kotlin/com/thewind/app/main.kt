@@ -1,3 +1,5 @@
+package com.thewind.app
+
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
