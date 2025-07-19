@@ -1,30 +1,31 @@
 [versions]
-agp = "8.8.0"
-android-compileSdk = "35"
+agp = "8.10.1"
+android-compileSdk = "36"
 android-minSdk = "24"
-android-targetSdk = "35"
-androidx-activityCompose = "1.10.0"
-atomicfuVersion = "0.26.1"
-compose-plugin = "1.8.0-alpha01"
-kotlin = "2.1.0"
-ktorVersion = "3.0.3"
-kotlinSerializationVersion = "1.8.0"
-skikoVersion = "0.8.18"
+android-targetSdk = "36"
+androidx-activityCompose = "1.10.1"
+atomicfuVersion = "0.27.0"
+compose-plugin = "1.9.0-alpha03"
+kotlin = "2.2.0"
+ktorVersion = "3.2.1"
+kotlinSerializationVersion = "1.9.0"
+skikoVersion = "0.9.21"
 voyagerVersion = "1.1.0-beta03"
-datastoreVersion = "1.1.2"
-collectionVersion = "1.5.0-beta02"
-lifecycleVersion = "2.8.4"
-kotlinDateTime = "0.6.0"
-androidx-room = "2.7.0-alpha12"
-ksp = "2.1.0-1.0.29"
-sqlite = "2.5.0-alpha12"
-coroutineVersion = "1.9.0"
-coil = "3.0.4"
-okioVersion = "3.9.1"
+datastoreVersion = "1.1.7"
+collectionVersion = "1.5.0"
+lifecycleVersion = "2.9.1"
+kotlinDateTime = "0.7.1"
+androidx-room = "2.7.2"
+navigation3Version = "1.0.0-alpha03"
+ksp = "2.2.0-2.0.2"
+sqlite = "2.5.2"
+coroutineVersion = "1.10.2"
+coil = "3.2.0"
+okioVersion = "3.12.0"
 vlcjVersion = "4.8.3"
 
 javaFxVersion = "21"
-kotlinpoet = "1.16.0"
+kotlinpoet = "2.1.0"
 
 
 [libraries]
@@ -35,6 +36,8 @@ coil = {module = "io.coil-kt.coil3:coil", version.ref="coil"}
 coilCompose = {module = "io.coil-kt.coil3:coil-compose", version.ref="coil"}
 coilKtor =  {module = "io.coil-kt.coil3:coil-network-ktor3", version.ref="coil"}
 coroutineSwing = {module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref="coroutineVersion"}
+
+uihandler = {module = "org.jetbrains.compose.ui:ui-backhandler", version.ref = "compose-plugin"}
 
 vlcj = {module = "uk.co.caprica:vlcj", version.ref = "vlcjVersion"}
 
@@ -49,6 +52,7 @@ ktorOkHttp = {module = "io.ktor:ktor-client-okhttp", version.ref = "ktorVersion"
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 
 viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleVersion" }
+navigation3 = {module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "navigation3Version"}
 kotlinSerialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerializationVersion" }
 androidXCollection = { module = "androidx.collection:collection", version.ref = "collectionVersion" }
 lifecycleCommon = { module = "org.jetbrains.androidx.lifecycle:lifecycle-common", version.ref = "lifecycleVersion" }
